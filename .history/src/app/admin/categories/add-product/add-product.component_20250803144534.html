@@ -1,0 +1,26 @@
+<div class="container p-4">
+  <h2>Add Product</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label>Name:</label>
+      <input formControlName="name" class="form-control" placeholder="Enter product name">
+    </div>
+    <div class="mb-3">
+      <label>Price:</label>
+      <input formControlName="price" type="number" class="form-control" placeholder="Enter price">
+    </div>
+    <div class="mb-3">
+      <label>Stock:</label>
+      <input formControlName="stock" type="number" class="form-control" placeholder="Enter stock">
+    </div>
+    <div class="mb-3">
+      <label>Category ID:</label>
+      <input formControlName="categoryId" class="form-control" placeholder="Enter category ID">
+    </div>
+    <div class="mb-3">
+      <label>Category Name:</label>
+      <input formControlName="categoryName" class="form-control" placeholder="Enter category name">
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="productForm.invalid">Add Product</button>
+  </form>
+</div>

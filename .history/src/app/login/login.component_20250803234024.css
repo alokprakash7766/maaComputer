@@ -1,0 +1,86 @@
+/* Background with soft gradient */
+.loginLogin {
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1s ease-in;
+}
+
+
+/* Glass effect card */
+.animated-box {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease-in-out;
+}
+
+.animated-box:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Login Heading Animation */
+.login {
+  animation: zoomIn 0.8s ease;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Input focus style */
+.form-floating input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Button Animation */
+button[type="submit"] {
+  background: linear-gradient(to right, #007bff, #00c6ff);
+  border: none;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(to right, #0056b3, #009ec3);
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+}
+
+/* Register Link hover */
+.text-decoration-underline.text-primary {
+  transition: color 0.3s ease;
+}
+
+.text-decoration-underline.text-primary:hover {
+  color: #004085;
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

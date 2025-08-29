@@ -1,0 +1,4 @@
+if (this.user.password !== this.user.confirmPassword) {
+      this.toastr.error('Passwords do not match');
+      return;
+    }

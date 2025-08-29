@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Wedding Cards</h2>
+
+  <div class="row" *ngIf="weddingCards$ | async as weddingCards">
+    <div class="col-md-4 mb-4" *ngFor="let card of weddingCards">
+      <div class="card shadow">
+        <img [src]="card.imageUrl" class="card-img-top" alt="{{card.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{ card.name }}</h5>
+          <p class="card-text">{{ card.description }}</p>
+          <p class="text-success fw-bold">₹{{ card.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-center text-muted" *ngIf="(weddingCards$ | async)?.length === 0">
+    No wedding cards available.
+  </p>
+</div>

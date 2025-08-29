@@ -1,0 +1,40 @@
+<div class="container p-4 shadow rounded bg-white animate-fade-in" style="max-width: 600px;">
+  <h2 class="text-center mb-4 text-primary">Add Product</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group mb-3 input-hover">
+      <label class="form-label fw-bold">Name:</label>
+      <input formControlName="name" class="form-control input-animate" placeholder="Enter product name">
+    </div>
+
+    <div class="form-group mb-3 input-hover">
+      <label class="form-label fw-bold">Price:</label>
+      <input formControlName="price" type="number" class="form-control input-animate" placeholder="Enter price">
+    </div>
+
+    <div class="form-group mb-3 input-hover">
+      <label class="form-label fw-bold">Stock:</label>
+      <input formControlName="stock" type="number" class="form-control input-animate" placeholder="Enter stock">
+    </div>
+
+    <div class="form-group mb-3 input-hover">
+      <label class="form-label fw-bold">Category ID:</label>
+      <input formControlName="categoryId" class="form-control input-animate" placeholder="Enter category ID">
+    </div>
+
+    <div class="form-group mb-4 input-hover">
+      <label class="form-label fw-bold">Category Name:</label>
+      <input formControlName="categoryName" class="form-control input-animate" placeholder="Enter category name">
+    </div>
+    <div class="form-group mb-4">
+  <label class="form-label fw-bold">Product Image:</label>
+  <input type="file" (change)="onFileSelected($event)" class="form-control" accept="image/*">
+</div>
+
+
+    <button class="btn btn-primary w-100 btn-animate" type="submit" [disabled]="productForm.invalid">
+      Add Product
+    </button>
+
+  </form>
+</div>

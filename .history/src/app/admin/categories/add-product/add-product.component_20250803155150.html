@@ -1,0 +1,80 @@
+<!-- Spinner -->
+<ngx-spinner
+  bdColor="rgba(0, 51, 102, 0.9)"
+  size="medium"
+
+  type="ball-fussion"
+  [fullScreen]="true">
+</ngx-spinner>
+
+<!-- Add Product/Service Form Start -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mt-4 mb-5">
+      <h2 class="text-center mb-4">Add Item / Category</h2>
+
+      <form [formGroup]="categoryForm" (ngSubmit)="submitCategory()">
+
+        <!-- Category Type Dropdown -->
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select class="form-select" formControlName="name">
+            <option value="">-- Select Category --</option>
+            <option>Printer</option>
+            <option>Keyboard</option>
+            <option>Wedding Card</option>
+            <option>Rubber Stamp</option>
+            <option>Photo Goods</option>
+            <option>Lamination Sheets</option>
+            <option>Ink Refilling</option>
+            <option>Flex Design & Printing</option>
+            <option>Stationery</option>
+            <option>Paper - A4</option>
+            <option>Paper - Century</option>
+            <option>Paper - Photo</option>
+            <option>Passport Size Photo</option>
+            <option>Full Size Photo</option>
+            <option>Printer Repair/Service</option>
+          </select>
+        </div>
+
+        <!-- Company Name -->
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" formControlName="company" placeholder="Enter Name">
+        </div>
+
+        <!-- Price -->
+        <div class="mb-3">
+          <label class="form-label">Price (₹)</label>
+          <input type="number" class="form-control" formControlName="price" placeholder="Enter price">
+        </div>
+
+        <!-- Warranty -->
+        <div class="mb-3">
+          <label class="form-label">Warranty</label>
+          <input type="number" class="form-control" formControlName="warranty" placeholder="">
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="3" formControlName="description" placeholder="Enter item details"></textarea>
+        </div>
+
+        <!-- Image URL -->
+        <div class="mb-3">
+          <label class="form-label">Image URL</label>
+          <input type="file" class="form-control" (change)="uploadFile($event)" placeholder="Enter image URL">
+        </div>
+
+        <button type="submit" class="btn btn-success w-100" [disabled]="categoryForm.invalid">Add Category</button>
+
+        <p class="mt-3 text-center">
+          Go back to <a routerLink="/admin/dashboard">Dashboard</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Form End -->

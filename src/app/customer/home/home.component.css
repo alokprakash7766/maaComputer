@@ -1,0 +1,28 @@
+.fixed-image {
+  width: 100%;
+  margin-top: 1%;
+  height: 200px; /* or adjust as needed */
+  object-fit: cover;
+  border-top-left-radius: 0.5rem; /* for rounded-top effect */
+  border-top-right-radius: 0.5rem;
+}
+.button1{
+      width:9rem;
+      height: 2.5rem;
+      margin-left: 2%;
+      font-size: 0.7rem;
+}
+
+.boxshodow {
+  background-color: #fff;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.boxshodow:hover {
+  background-color: #f9f9f9; /* light background on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.imageClass{
+      height: 200px;
+      width: 150px;
+}

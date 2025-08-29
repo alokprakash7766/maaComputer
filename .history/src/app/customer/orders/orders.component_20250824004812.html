@@ -1,0 +1,57 @@
+<div class="container py-5 mt-5">
+  <div class="row justify-content-center py-5">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg p-4 py-5 rounded-4">
+        <h3 class="text-center mb-4 text-primary fw-bold">Place Your Order</h3>
+
+        <form (ngSubmit)="submitOrder()" #orderForm="ngForm">
+          <div class="row">
+            
+            <!-- Customer Name -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Your Name</label>
+              <input type="text" class="form-control rounded-3" name="name" [(ngModel)]="orderData.customerName" required>
+            </div>
+            
+            <!-- Mobile -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Mobile No</label>
+              <input type="text" class="form-control rounded-3" name="mobileNo" [(ngModel)]="orderData.mobileNo" required>
+            </div>
+
+            <!-- Address (full row) -->
+            <div class="col-12 mb-3">
+              <label class="form-label fw-semibold">Address</label>
+              <textarea class="form-control rounded-3" name="address" [(ngModel)]="orderData.address" rows="2" required></textarea>
+            </div>
+
+            <!-- Quantity -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Quantity</label>
+              <input type="number" class="form-control rounded-3" name="quantity" [(ngModel)]="orderData.quantity" required min="1">
+            </div>
+
+            <!-- User Image Upload -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Upload Your Image</label>
+              <input type="file" class="form-control rounded-3" (change)="onFileSelected($event)">
+            </div>
+          </div>
+
+          <!-- Card Details Preview -->
+          <div *ngIf="selectedCard" class="border p-3 mb-3 rounded-3 bg-light">
+            <h5 class="fw-bold text-secondary">{{selectedCard.name}}</h5>
+            <p class="mb-1">{{selectedCard.description}}</p>
+            <p class="fw-semibold text-success">Price: ₹{{selectedCard.price}}</p>
+            <img [src]="selectedCard.image" class="img-fluid rounded-3 shadow-sm" width="180">
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-success w-100 rounded-3 fw-semibold">
+            Confirm Order
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

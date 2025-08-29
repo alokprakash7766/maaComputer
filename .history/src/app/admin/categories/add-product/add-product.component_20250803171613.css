@@ -1,0 +1,53 @@
+/* File: add-product.component.css */
+
+/* Focus effect for all inputs */
+input.form-control:focus,
+textarea.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  transition: all 0.3s ease;
+}
+
+/* File input style */
+input[type="file"] {
+  border: 2px dashed #aaa;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+  background-color: #f0f8ff;
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+/* Submit button hover effect */
+button.btn-primary {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: scale(1.03);
+}
+
+/* Label hover effect */
+label.form-label {
+  transition: color 0.3s ease;
+}
+
+label.form-label:hover {
+  color: #0d6efd;
+}
+
+/* Toggle switch animation */
+.form-check-input {
+  transition: all 0.3s ease;
+}
+
+.form-check-input:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}

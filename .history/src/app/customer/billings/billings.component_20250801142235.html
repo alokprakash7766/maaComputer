@@ -1,0 +1,93 @@
+<!-- Single Page Header start -->
+<div class="container-fluid page-header py-5">
+  <h1 class="text-center text-white display-6">Billing</h1>
+  <ol class="breadcrumb justify-content-center mb-0">
+    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/billings">Pages</a></li>
+    <li class="breadcrumb-item active text-white">Billing</li>
+  </ol>
+</div>
+<!-- Single Page Header End -->
+
+
+
+
+<!-- Billing Page Start -->
+<!-- Billing Form and Orders Section -->
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <h1 class="mb-4">Billing details</h1>
+    <form>
+      <div class="row g-5">
+        <!-- Left: Form -->
+        <div class="col-md-12 col-lg-6 col-xl-7">
+          <div class="row">
+            <div class="col-md-12 col-lg-6">
+              <div class="form-item w-100">
+                <label class="form-label my-3">Customer Name<sup>*</sup></label>
+                <input type="text" class="form-control" [(ngModel)]="billing.customerName" name="customerName">
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+              <div class="form-item w-100">
+                <label class="form-label my-3">Phone<sup>*</sup></label>
+                <input type="tel" class="form-control" [(ngModel)]="billing.phone" name="phone">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-item">
+            <label class="form-label my-3">Address<sup>*</sup></label>
+            <input type="text" class="form-control" [(ngModel)]="billing.address" name="address">
+          </div>
+
+          <div class="form-item">
+            <label class="form-label my-3">Billing Date<sup>*</sup></label>
+            <input type="date" class="form-control" [(ngModel)]="billing.billingDate" name="billingDate">
+          </div>
+
+          <button type="button" (click)="placeOrder()" class="btn btn-primary mt-4">Place Order</button>
+        </div>
+
+        <!-- Right: Billing Data Table -->
+        <div class="col-md-12 col-lg-6 col-xl-5">
+          <div class="table-responsive">
+            <table class="table table-bordered" *ngIf="billings.length > 0; else noData">
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Phone</th>
+                  <th>Address</th>
+                  <th>Total</th>
+                  <th>Date</th>
+                  <th>Products</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let bill of billings; trackBy: trackById">
+                  <td>{{ bill.customerName }}</td>
+                  <td>{{ bill.phone }}</td>
+                  <td>{{ bill.address }}</td>
+                  <td>₹{{ bill.totalAmount }}</td>
+                  <td>{{ bill.billingDate | date: 'shortDate' }}</td>
+                  <td>
+                    <ul class="mb-0">
+                      <li *ngFor="let item of bill.items">
+                        {{ item.productName }} (x{{ item.quantity }}) – ₹{{ item.price }}
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <ng-template #noData>
+              <p class="text-center mt-3">No billing records found.</p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Billing Page End -->

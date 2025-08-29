@@ -1,0 +1,29 @@
+<div class="container py-5">
+  <h2 class="mb-4">Add Product</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label">Title</label>
+      <input formControlName="title" type="text" class="form-control" placeholder="Product title" />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Price</label>
+      <input formControlName="price" type="number" class="form-control" placeholder="Price" />
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Description</label>
+      <textarea formControlName="description" class="form-control" rows="3" placeholder="Description"></textarea>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Image URL</label>
+      <input formControlName="imageUrl" type="text" class="form-control" placeholder="https://example.com/img.jpg" />
+    </div>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Add Product</button>
+    </div>
+  </form>
+</div>

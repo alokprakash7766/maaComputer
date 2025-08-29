@@ -1,0 +1,12 @@
+.container {
+  max-width: 600px;
+}
+
+.card {
+  border-radius: 16px;
+}
+
+.list-group-item {
+  font-size: 1rem;
+  padding: 12px 15px;
+}

@@ -1,0 +1,54 @@
+<!-- services -->
+
+<div class="container-fluid" id="service">
+  <h2 class="mb-3 text-info border-bottom border-top">Our Services</h2>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="text-center my-5">
+    <div class="spinner-border text-info" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Services List -->
+  <div class="row" *ngIf="!loading && servicesList.length > 0">
+    <div
+      class="service-card bg-dark text-light border rounded ms-3 box-shadow "
+      *ngFor="let service of servicesList">
+
+      <!-- Service Image -->
+      <a [href]="service.imageUrl" target="_blank">
+        <img
+          [src]="service.imageUrl"
+          alt="{{service.name}}"
+          class="service-img img-fluid mt-3"st />
+      </a>
+
+      <!-- Service Info -->
+      <div>
+        <h3 class="text-warning">{{ service.name }}</h3>
+        <p class="text-primary">{{ service.description }} (Parts will be charged
+          separately.)</p>
+        <p class="fw-bold text-primary">Service Charge: ₹{{ service.price }}</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mb-2 d-flex justify-content-between">
+        <button class="btn btn-outline-warning me-5"
+          (click)="editService(service.id)">
+          Edit
+        </button>
+        <button class="btn btn-outline-danger ms-5"
+          (click)="deleteService(service.id)">
+          Delete
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- No Services Found -->
+  <div *ngIf="!loading && servicesList.length === 0" class="alert alert-info">
+    No services found.
+  </div>
+</div>

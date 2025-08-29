@@ -1,0 +1,75 @@
+<div class="container mt-4">
+  <h2 class="mb-3 text-center">Place Your Order</h2>
+
+  <form #orderForm="ngForm" (ngSubmit)="submitOrder(orderForm)" novalidate>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Name</label>
+        <input type="text" class="form-control" name="customerName" [(ngModel)]="orderData.customerName" required />
+        <div *ngIf="orderForm.submitted && !orderData.customerName" class="text-danger">Name is required</div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email" [(ngModel)]="orderData.email" required />
+        <div *ngIf="orderForm.submitted && !orderData.email" class="text-danger">Email is required</div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Mobile</label>
+        <input type="text" class="form-control" name="mobile" [(ngModel)]="orderData.mobile" required minlength="10" />
+        <div *ngIf="orderForm.submitted && !orderData.mobile" class="text-danger">Mobile is required</div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Address</label>
+        <textarea class="form-control" name="address" [(ngModel)]="orderData.address" required></textarea>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Product</label>
+        <input type="text" class="form-control" name="productName" [(ngModel)]="orderData.productName" required />
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <label>Quantity</label>
+        <input type="number" class="form-control" name="quantity" [(ngModel)]="orderData.quantity" required min="1" />
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <label>Price (₹)</label>
+        <input type="number" class="form-control" name="price" [(ngModel)]="orderData.price" required min="1" />
+      </div>
+    </div>
+
+    <button class="btn btn-success w-100" type="submit">Pay & Place Order</button>
+  </form>
+
+  <hr />
+
+  <h3 class="mt-4">Orders List</h3>
+  <table class="table table-bordered mt-2">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.customerName }}</td>
+        <td>{{ order.productName }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>{{ order.price }}</td>
+        <td>{{ order.quantity * order.price }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="removeOrder(order.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

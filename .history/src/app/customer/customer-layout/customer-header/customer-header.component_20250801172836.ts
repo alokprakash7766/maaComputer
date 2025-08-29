@@ -1,0 +1,54 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+@Component({
+  selector: 'app-customer-header',
+  templateUrl: './customer-header.component.html',
+  styleUrls: ['./customer-header.component.css'],
+  standalone: false
+})
+export class CustomerHeaderComponent {
+
+  constructor(
+    private router: Router,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
+  ) {}
+
+  // ✅ Check if user is logged in
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('user');
+  }
+
+  // ✅ Handle click on icon
+  handleUserIconClick() {
+    if (this.isLoggedIn()) {
+      this.logout();
+    } else {
+      this.router.navigate(['/register']);
+    }
+  }
+
+  // ✅ Logout Logic
+  logout() {
+    Swal.fire({
+      title: 'Logout?',
+      text: 'Are you sure you want to logout?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Logout',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.spinner.show();
+        localStorage.removeItem('user');
+        this.spinner.hide();
+        this.toastr.success('Logout Successful');
+        this.router.navigateByUrl('/login');
+      }
+    });
+  }
+}

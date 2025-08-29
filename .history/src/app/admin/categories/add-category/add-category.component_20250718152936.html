@@ -1,0 +1,41 @@
+<!-- Spinner -->
+<ngx-spinner
+  bdColor="rgba(0, 51, 102, 0.9)"
+  size="medium"
+  color="#00E5FF"
+  type="ball-fussion"
+  [fullScreen]="true">
+</ngx-spinner>
+
+<!-- Add Category Form Start -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mt-4 mb-5">
+      <h2 class="text-center mb-4">Add Category</h2>
+      <form [formGroup]="categoryForm" (ngSubmit)="submitCategory()">
+
+        <div class="mb-3">
+          <label class="form-label">Category Name</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Enter category name">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Category Description</label>
+          <textarea class="form-control" formControlName="description" rows="3" placeholder="Enter category description"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Category Image URL</label>
+          <input type="text" class="form-control" formControlName="imageUrl" placeholder="Enter image URL">
+        </div>
+
+        <button type="submit" class="btn btn-success w-100" [disabled]="categoryForm.invalid">Add Category</button>
+        <p class="mt-3 text-center">
+          Go back to
+          <a routerLink="/dashboard">Dashboard</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Add Category Form End -->

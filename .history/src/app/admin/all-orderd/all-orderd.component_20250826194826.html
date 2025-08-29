@@ -1,0 +1,31 @@
+<p>all-orderd works!</p>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">All Orders</h2>
+
+  <div *ngIf="orders.length === 0" class="alert alert-info text-center">
+    No orders found!
+  </div>
+
+  <table *ngIf="orders.length > 0" class="table table-bordered table-striped shadow-sm">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Customer Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Total Amount</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.email }}</td>
+        <td>{{ order.phone }}</td>
+        <td>₹ {{ order.totalAmount }}</td>
+        <td>{{ order.date | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

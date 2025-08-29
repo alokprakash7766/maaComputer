@@ -1,0 +1,161 @@
+<div class="container-fluid py-5" *ngIf="userData; else noUser">
+  <div class="row g-0">
+
+    <!-- Left Side Panel -->
+    <div class="col-md-3 col-lg-2">
+      <div class="list-group shadow-sm h-100 rounded-0">
+        <button class="list-group-item list-group-item-action py-3"
+          [class.active]="activeTab === 'profile'"
+          (click)="activeTab = 'profile'">
+          👤 Profile
+        </button>
+        <button class="list-group-item list-group-item-action py-3"
+          [class.active]="activeTab === 'settings'"
+          (click)="activeTab = 'settings'">
+          ⚙️ Settings
+        </button>
+        <button class="list-group-item list-group-item-action py-3"
+          [class.active]="activeTab === 'orders'"
+          (click)="activeTab = 'orders'">
+          🛒 My Orders
+        </button>
+        <button class="list-group-item list-group-item-action text-danger py-3"
+          (click)="logout()">
+          🚪 Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Side Panel -->
+    <div class="col-md-9 col-lg-10">
+      <div class="card shadow-lg p-4 rounded-0 border-0 h-100">
+        <h3 class="mb-4 text-center border-bottom pb-3">My Account</h3>
+
+        <!-- Profile Tab -->
+        <div *ngIf="activeTab === 'profile'" @slideAnimation>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Name:</strong> {{ userData.name
+              }}</li>
+            <li class="list-group-item"><strong>Email:</strong> {{
+              userData.email }}</li>
+            <li class="list-group-item"><strong>Phone:</strong> {{
+              userData.phone }}</li>
+            <li class="list-group-item"><strong>Address:</strong> {{
+              userData.address }}</li>
+            <li class="list-group-item"><strong>Created At:</strong> {{
+              userData.createdAt | date:'medium' }}</li>
+            <li class="list-group-item"><strong>User Type:</strong>
+              {{ userData.userType == '1' ? 'Admin' : 'User' }}
+            </li>
+            <li class="list-group-item"><strong>Status:</strong> {{
+              userData.isLogged == 'true' ? 'Active' : 'Inactive' }}</li>
+          </ul>
+        </div>
+
+        <div *ngIf="activeTab === 'settings'" @slideAnimation>
+  <h5>⚙️ Account Settings</h5>
+  <p class="text-muted">Update your account details or change password.</p>
+
+  <!-- 🔹 Update Profile Form -->
+  <form (ngSubmit)="updateProfile()" class="mb-4">
+    <div class="mb-2">
+      <label>Name</label>
+      <input type="text" [(ngModel)]="profileForm.name" name="name" class="form-control">
+    </div>
+    <div class="mb-2">
+      <label>Phone</label>
+      <input type="text" [(ngModel)]="profileForm.phone" name="phone" class="form-control">
+    </div>
+    <div class="mb-2">
+      <label>Address</label>
+      <textarea [(ngModel)]="profileForm.address" name="address" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Profile</button>
+  </form>
+
+  <!-- 🔹 Change Password Form -->
+  <form (ngSubmit)="changePassword()">
+    <div class="mb-2">
+      <label>Old Password</label>
+      <input type="password" [(ngModel)]="passwordForm.oldPassword" name="oldPassword" class="form-control">
+    </div>
+    <div class="mb-2">
+      <label>New Password</label>
+      <input type="password" [(ngModel)]="passwordForm.newPassword" name="newPassword" class="form-control">
+    </div>
+    <div class="mb-2">
+      <label>Confirm Password</label>
+      <input type="password" [(ngModel)]="passwordForm.confirmPassword" name="confirmPassword" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-warning">Change Password</button>
+  </form>
+</div>
+
+
+        <!-- Orders Tab -->
+        
+          <!-- Orders Tab -->
+          <div *ngIf="activeTab === 'orders'" @slideAnimation>
+            <h5 class="mb-4">🛒 My Orders</h5>
+
+            <div *ngIf="orders.length > 0; else noOrders">
+              <div class="table-responsive">
+                <table
+                  class="table table-bordered table-hover shadow-sm align-middle">
+                  <thead class="table-primary">
+                    <tr>
+                      <th>#</th>
+                      <th>Product</th>
+                      <th>Qty</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                      <th>Ordered At</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let order of orders; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>
+                        <strong>{{ order.productName }}</strong> <br>
+                        <small class="text-muted">Address: {{ order.address
+                          }}</small>
+                      </td>
+                      <td>{{ order.quantity }}</td>
+                      <td>₹{{ order.price }}</td>
+                      <td><b>₹{{ order.price * order.quantity }}</b></td>
+                      <td>{{ order.createdAt ? (order.createdAt | date:'medium')
+                        : 'N/A' }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- No Orders -->
+            <ng-template #noOrders>
+              <p class="text-muted">You have no orders yet.</p>
+            </ng-template>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- If No User -->
+<ng-template #noUser>
+  <div class="container-fluid py-5">
+    <div class="card shadow-lg p-4 rounded-4 text-center">
+      <h3 class="mb-3">My Account</h3>
+      <p class="text-muted mb-4">You are not logged in.</p>
+      <button class="btn btn-outline-primary w-25" (click)="goToLogin()">
+        🔑 Login to Continue
+      </button>
+      <p class="mt-3">
+        Don't have an account?
+        <a (click)="goToRegister()" class="text-decoration-none"
+          style="cursor: pointer;">Register here</a>
+      </p>
+    </div>
+  </div>
+</ng-template>

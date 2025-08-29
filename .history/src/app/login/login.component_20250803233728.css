@@ -1,0 +1,62 @@
+/* Container animation */
+.loginLogin {
+  animation: fadeSlideUp 0.8s ease-out;
+}
+
+/* Animated form box */
+.animated-box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+}
+
+/* Sign In button hover effect */
+button[type="submit"]:hover {
+  background-color: #007bff;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 123, 255, 0.2);
+}
+
+/* Animated Login Heading */
+.login {
+  animation: popIn 0.7s ease-in-out;
+  transition: all 0.3s ease;
+}
+
+.login:hover {
+  transform: scale(1.05);
+  background-color: #f8f9fa;
+}
+
+/* Register link hover */
+.text-decoration-underline.text-primary:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

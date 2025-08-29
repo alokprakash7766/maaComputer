@@ -1,0 +1,93 @@
+<div class="container py-5">
+  <h2 class="text-center mb-5 text-primary fw-bold">📦 Place Your Order</h2>
+
+  <div class="row g-4">
+    <!-- Left Side : Form -->
+    <div class="col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4 p-4 h-100">
+        <h4 class="mb-4 text-success fw-bold">Fill Order Details</h4>
+
+        <form (ngSubmit)="submitOrder()" #orderForm="ngForm"
+          class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label class="form-label fw-semibold"
+              for="validationCustom01">Customer Name</label>
+            <input type="text" class="form-control"
+              [(ngModel)]="orderData.customerName" name="customerName"
+              id="validationCustom01" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold"
+              for="validationCustom02">Email</label>
+            <input type="email" class="form-control"
+              [(ngModel)]="orderData.email" name="email" id="validationCustom02"
+              required>
+            <div class="valid-feedback">
+              Enter Valid Email(example)
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Mobile</label>
+            <input type="text" class="form-control"
+              [(ngModel)]="orderData.mobile" name="mobile" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Address</label>
+            <textarea class="form-control" [(ngModel)]="orderData.address"
+              name="address" rows="2" required></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Product Name</label>
+              <input type="text" class="form-control"
+                [(ngModel)]="orderData.productName" name="productName" required>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="form-label fw-semibold">Qty</label>
+              <input type="number" class="form-control"
+                [(ngModel)]="orderData.quantity" name="quantity" required>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="form-label fw-semibold">Price</label>
+              <input type="number" class="form-control"
+                [(ngModel)]="orderData.price" name="price" required>
+            </div>
+          </div>
+
+          <button class="btn btn-primary w-100 mt-3">Place Order</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Side : Orders List -->
+    <div class="col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4 p-4 h-100">
+        <h4 class="mb-4 text-danger fw-bold text-center">All Orders</h4>
+
+        <div *ngIf="orders.length === 0" class="text-center text-muted">
+          <p>No Orders Yet 🚫</p>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let order of orders"
+            class="list-group-item d-flex justify-content-between align-items-center order-item">
+            <div>
+              <strong>{{ order.customerName }}</strong> <br>
+              <small class="text-muted">{{ order.productName }}
+                (x{{order.quantity}})</small>
+            </div>
+            <button class="btn btn-sm btn-outline-danger px-3"
+              (click)="removeOrder(order.id!)">❌</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

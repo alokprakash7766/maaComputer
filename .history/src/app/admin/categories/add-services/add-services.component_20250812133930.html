@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <div class="card shadow w-50">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Add New Service</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="serviceForm" (ngSubmit)="submitService()">
+
+        <div class="row">
+          <div class="col-md-6"><div class="mb-3">
+              <label class="form-label">Service Name</label>
+              <input type="text" class="form-control" formControlName="name">
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label class="form-label">Price (₹)</label>
+              <input type="number" class="form-control" formControlName="price">
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="3"
+            formControlName="description"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Service Image</label>
+          <input type="file" class="form-control"
+            (change)="onFileSelected($event)" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">
+          Add Service
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

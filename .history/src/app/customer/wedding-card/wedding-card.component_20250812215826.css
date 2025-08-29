@@ -1,0 +1,32 @@
+.text-pink {
+  color: #e91e63 !important;
+}
+
+.text-purple {
+  color: #6a1b9a !important;
+}
+
+.btn-pink {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+}
+
+.btn-pink:hover {
+  background-color: #c2185b;
+}
+
+.wedding-card {
+  font-family: 'Poppins', sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wedding-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(233, 30, 99, 0.3);
+}
+
+.wedding-card-img {
+  height: 200px;
+  object-fit: cover;
+}

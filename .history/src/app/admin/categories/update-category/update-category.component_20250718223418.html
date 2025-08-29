@@ -1,0 +1,38 @@
+<div class=" mt-4">
+  <h2 class="mb-3">All Categories</h2>
+
+  <div *ngFor="let category of categories" class="card mb-3">
+    <div class="card-body">
+      <div class="d-flex justify-content-between ">
+        <div>
+          <img
+            *ngIf="category.imageUrl"
+            [src]="category.imageUrl"
+            alt="Category Image"
+            class="img-fluid mt-2"
+            style="max-width: 200px;">
+          <h5 class="card-title">{{ category.name }}</h5>
+          <p class="card-text"><strong>Description:</strong> {{
+            category.description }}</p>
+          <p class="card-text"><strong>Price:</strong> ₹{{ category.price }}</p>
+          <p class="card-text"><strong>Company:</strong> {{ category.company
+            }}</p>
+          <p class="card-text"><strong>Warranty:</strong> {{ category.warranty
+            }} months</p>
+
+          <p class="text-muted mt-2">
+            Created At: {{ category.createdAt | date: 'medium' }}
+          </p>
+        </div>
+
+        <!-- Edit / Delete Buttons -->
+        <div>
+          <button class="btn btn-primary btn-sm me-2"
+            (click)="onEdit(category.id!)">Edit</button>
+          <button class="btn btn-danger btn-sm"
+            (click)="onDelete(category.id!)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

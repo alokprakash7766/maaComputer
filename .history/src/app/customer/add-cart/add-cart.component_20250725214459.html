@@ -1,0 +1,13 @@
+<div class="container mt-4">
+  <h3>Your Shopping Cart</h3>
+  <div *ngIf="cartItems.length === 0" class="alert alert-warning mt-3">
+    Cart is empty 😥
+  </div>
+
+  <div *ngFor="let item of cartItems; let i = index" class="card p-3 my-2">
+    <h5>{{ item.name }}</h5>
+    <p>Price: ₹{{ item.price }}</p>
+    <button class="btn btn-primary me-2" (click)="buyItem(item)">Buy</button>
+    <button class="btn btn-danger" (click)="deleteItem(i)">Delete</button>
+  </div>
+</div>

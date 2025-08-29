@@ -1,0 +1,25 @@
+import { Component, OnInit } from '@angular/core';
+import { WeddingCard } from '../../../shared/models/weddingCard/wedding-card.model';
+import { Router } from '@angular/router';
+import { WeddingCardService } from '../../../services/weddingCard/wedding-card.service';
+
+@Component({
+  selector: 'app-all-wedding-card',
+  imports: [],
+  templateUrl: './all-wedding-card.component.html',
+  styleUrl: './all-wedding-card.component.css'
+})
+export class AllWeddingCardComponent implements OnInit{
+         weddingCardsList: WeddingCard[] = [];
+          constructor(
+    private router: Router,
+     private weddingCardService: WeddingCardService
+  ) {}
+ ngOnInit(): void {
+       // Wedding Cards
+    this.weddingCardService.getAllWeddingCards().subscribe({
+      next: (data) => this.weddingCardsList = data,
+      error: (err) => console.error('Error fetching wedding cards:', err)
+    });
+ }
+}

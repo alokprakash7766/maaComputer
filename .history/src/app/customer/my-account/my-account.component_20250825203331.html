@@ -1,0 +1,29 @@
+<!-- Settings Section -->
+<div *ngIf="activeTab === 'settings'">
+  <h3 class="text-warning fw-bold mb-4">Settings</h3>
+
+  <!-- Edit Mode -->
+  <div *ngIf="isEditing; else viewSettings">
+    <form (ngSubmit)="saveProfile()">
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" [(ngModel)]="editData.name" name="name" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Address</label>
+        <textarea [(ngModel)]="editData.address" name="address" class="form-control" rows="3" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success me-2">💾 Save</button>
+      <button type="button" class="btn btn-secondary" (click)="isEditing=false">Cancel</button>
+    </form>
+  </div>
+
+  <!-- View Mode -->
+  <ng-template #viewSettings>
+    <p><strong>Name:</strong> {{ user.name }}</p>
+    <p><strong>Address:</strong> {{ user.address }}</p>
+    <button class="btn btn-primary" (click)="startEdit()">✏️ Edit Profile</button>
+  </ng-template>
+</div>

@@ -1,0 +1,29 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { CategoryService } from '../../../services/category/category.service';
+import { Category } from '../../../shared/models/category/category.model';
+
+@Component({
+  selector: 'app-update-category',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
+  templateUrl: './update-category.component.html',
+  styleUrls: ['./update-category.component.css']
+})
+export class UpdateCategoryComponent implements OnInit {
+  categories: Category[] = [];
+
+  constructor(private categoryService: CategoryService) {}
+
+  ngOnInit(): void {
+    this.categoryService.getAllCategories().subscribe({
+      next: (data) => {
+        this.categories = data;
+      },
+      error: (err) => {
+        console.error('Error fetching categories:', err);
+      }
+    });
+  }
+}

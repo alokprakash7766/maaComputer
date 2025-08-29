@@ -1,0 +1,51 @@
+<div class="container d-flex justify-content-center mt-5">
+  <div class="card shadow-lg p-4 rounded-4" style="max-width: 500px; width: 100%;">
+    <h3 class="text-center mb-4 text-primary fw-bold">Place Your Order</h3>
+
+    <form (ngSubmit)="submitOrder()" #orderForm="ngForm">
+      
+      <!-- Customer Name -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Your Name</label>
+        <input type="text" class="form-control rounded-3" name="name" [(ngModel)]="orderData.customerName" required>
+      </div>
+
+      <!-- Address -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Address</label>
+        <textarea class="form-control rounded-3" name="address" [(ngModel)]="orderData.address" rows="2" required></textarea>
+      </div>
+
+      <!-- Mobile -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Mobile No</label>
+        <input type="text" class="form-control rounded-3" name="mobileNo" [(ngModel)]="orderData.mobileNo" required>
+      </div>
+
+      <!-- Quantity -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Quantity</label>
+        <input type="number" class="form-control rounded-3" name="quantity" [(ngModel)]="orderData.quantity" required min="1">
+      </div>
+
+      <!-- User Image Upload -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Upload Your Image</label>
+        <input type="file" class="form-control rounded-3" (change)="onFileSelected($event)">
+      </div>
+
+      <!-- Card Details Preview -->
+      <div *ngIf="selectedCard" class="border p-3 mb-3 rounded-3 bg-light">
+        <h5 class="fw-bold text-secondary">{{selectedCard.name}}</h5>
+        <p class="mb-1">{{selectedCard.description}}</p>
+        <p class="fw-semibold text-success">Price: ₹{{selectedCard.price}}</p>
+        <img [src]="selectedCard.image" class="img-fluid rounded-3 shadow-sm" width="180">
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-success w-100 rounded-3 fw-semibold">
+        Confirm Order
+      </button>
+    </form>
+  </div>
+</div>

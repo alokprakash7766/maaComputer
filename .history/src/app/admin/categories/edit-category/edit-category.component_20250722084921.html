@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Edit Category</h2>
+  <form [formGroup]="editForm" (ngSubmit)="save()">
+    <div class="mb-3">
+      <label>Name</label>
+      <input class="form-control" formControlName="name" />
+    </div>
+    <div class="mb-3">
+      <label>Description</label>
+      <textarea class="form-control" formControlName="description"></textarea>
+    </div>
+    <div class="mb-3">
+      <label>Price</label>
+      <input type="number" class="form-control" formControlName="price" />
+    </div>
+    <div class="mb-3">
+      <label>Company</label>
+      <input class="form-control" formControlName="company" />
+    </div>
+    <div class="mb-3">
+      <label>Warranty (months)</label>
+      <input type="number" class="form-control" formControlName="warranty" />
+    </div>
+    <div class="mb-3">
+      <label>Image URL</label>
+      <input class="form-control" formControlName="imageUrl" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
+</div>

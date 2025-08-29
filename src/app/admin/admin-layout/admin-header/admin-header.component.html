@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-2">
+  <a class="navbar-brand fw-bold fs-1" routerLink="/admin/dashboard">
+    Admin Panel
+  </a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="adminNavbar">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link btn btn-outline-info" routerLink="/admin/dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn btn-outline-info" routerLink="/admin/allOrders">View All Orders</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link btn btn-outline-info" routerLink="/admin/addProduct">Add Product</a>
+      </li> -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Product
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark " aria-labelledby="categoriesDropdown">
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/addProduct">Add Product</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/edit/product/:id">Manage Product</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/viewProduct">View All Product</a>
+          </li>
+        </ul>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link btn btn-outline-info" routerLink="/admin/addServices">Add Services</a>
+      </li> -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Services
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark " aria-labelledby="categoriesDropdown">
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/addServices">Add Services</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/edit-service/:id">Manage Services</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/viewServices">View All Services</a>
+          </li>
+        </ul>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link btn btn-outline-info" routerLink="/admin/addWeddingCard">Add Wedding Card</a>
+      </li> -->
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Wedding Card
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark " aria-labelledby="categoriesDropdown">
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/addWeddingCard">Add Wedding Card</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/edit-wedding/card/:id">Manage Wedding Card</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/viewWeddingCard">View All Wedding Card</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle btn btn-outline-info" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Categories
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark " aria-labelledby="categoriesDropdown">
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/add/category">Add Category</a>
+          </li>
+          <li>
+            <a class="dropdown-item text-info btn btn-outline-info" routerLink="/admin/update/category">View All Category</a>
+          </li>
+          
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link btn btn btn-outline-info ms-3" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

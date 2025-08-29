@@ -1,0 +1,64 @@
+import { Injectable, inject } from '@angular/core';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  addDoc,
+  deleteDoc,
+  doc,
+  getDoc,
+  updateDoc
+} from '@angular/fire/firestore';
+import { Category } from '../../shared/models/category/category.model';
+import { Observable } from 'rxjs';
+import { CollectionReference, DocumentData } from 'firebase/firestore';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CategoryService {
+
+  private firestore = inject(Firestore);   // ✅ inject use karna hai
+  private dbPath = 'categories';
+  private categoryRef: CollectionReference<DocumentData>;
+
+  constructor() {
+    this.categoryRef = collection(this.firestore, this.dbPath);
+  }
+
+  addCategory(category: Category): Promise<any> {
+    category.status = true;
+    category.createdAt = Date.now();
+    return addDoc(this.categoryRef, { ...category });
+  }
+
+  getAllCategories(): Observable<Category[]> {
+    return collectionData(this.categoryRef, { idField: "id" }) as Observable<Category[]>;
+  }
+
+  deleteCategory(id: string) {
+    const docRef = doc(this.firestore, `${this.dbPath}/${id}`); // ✅ Correct usage
+    return deleteDoc(docRef);
+  }
+
+  getSingleCategory(id: string): Observable<any> {
+    const docRef = doc(this.firestore, `${this.dbPath}/${id}`);
+    return new Observable((observer) => {
+      getDoc(docRef).then((docSnap) => {
+        if (docSnap.exists()) {
+          observer.next({ id: docSnap.id, ...docSnap.data() });
+        } else {
+          observer.error("Document not found");
+        }
+        observer.complete();
+      }).catch((error) => {
+        observer.error(error);
+      });
+    });
+  }
+
+  updateCategory(id: string, data: any): Promise<void> {
+    const docRef = doc(this.firestore, `${this.dbPath}/${id}`); // ✅ Correct usage
+    return updateDoc(docRef, data);
+  }
+}

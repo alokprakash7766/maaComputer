@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Add New Service</h4>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="addService()" #serviceForm="ngForm">
+
+        <!-- Service Name -->
+        <div class="mb-3">
+          <label class="form-label">Service Name</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="service.name" required>
+        </div>
+
+        <!-- Service Description -->
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" name="description" rows="3" [(ngModel)]="service.description" required></textarea>
+        </div>
+
+        <!-- Service Price -->
+        <div class="mb-3">
+          <label class="form-label">Price (₹)</label>
+          <input type="number" class="form-control" name="price" [(ngModel)]="service.price" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success w-100" [disabled]="serviceForm.invalid">
+          Add Service
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

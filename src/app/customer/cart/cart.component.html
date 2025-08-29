@@ -1,0 +1,60 @@
+ <div class="container-fluid page-header py-5">
+  <h1 class="text-center text-white display-6">Cart</h1>
+  <ol class="breadcrumb justify-content-center mb-0">
+    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/cart">Pages</a></li>
+    <li class="breadcrumb-item active text-white">Cart</li>
+  </ol>
+</div>
+<!-- Single Page Header End -->
+
+<div class="container mt-4">
+  <h3>Cart</h3>
+
+  @if (cartItems.length === 0) {
+  <div class="text-center text-muted my-5">
+    <p>Your cart is empty.</p>
+  </div>
+  }
+
+  @if (cartItems.length > 0) {
+  <table class="table table-bordered mt-5">
+    <thead class="table-light">
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of cartItems; track item.productId) {
+      <tr>
+        <td><img [src]="item.image" width="60" height="60" /></td>
+        <td>{{ item.name }}</td>
+        <td>₹{{ item.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>₹{{ getTotal(item) }}</td>
+        <td width="250">
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-danger btn-sm" (click)="removeItem(item.id)">
+              Remove
+            </button>
+
+            <button class="btn btn-success me" (click)="proceedToPayment(item)" >Buy
+              Now</button>
+          </div>
+
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="text-end mt-3">
+    <h4>Subtotal: ₹{{ getSubtotal() }}</h4>
+  </div>
+  }
+</div>

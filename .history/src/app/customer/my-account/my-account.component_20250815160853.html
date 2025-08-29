@@ -1,0 +1,25 @@
+<div class="container mt-4" *ngIf="!loading; else loadingTemplate">
+  <div *ngIf="userData; else noUser">
+    <h2 class="mb-3">My Account</h2>
+    <div class="card p-3 shadow-sm">
+      <p><strong>Name:</strong> {{ userData.name }}</p>
+      <p><strong>Email:</strong> {{ userData.email }}</p>
+      <p><strong>Phone:</strong> {{ userData.phone }}</p>
+      <p><strong>Address:</strong> {{ userData.address }}</p>
+      <p><strong>Status:</strong> {{ userData.status ? 'Active' : 'Inactive' }}</p>
+      <p><strong>User Type:</strong> {{ userData.userType }}</p>
+      <p><strong>Created At:</strong> {{ userData.createdAt | date:'medium' }}</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="text-center mt-5">
+    <div class="spinner-border" role="status"></div>
+    <p class="mt-2">Loading...</p>
+  </div>
+</ng-template>
+
+<ng-template #noUser>
+  <p class="text-danger">No user data found. Please log in.</p>
+</ng-template>

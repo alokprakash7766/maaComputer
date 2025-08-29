@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">All Orders</h2>
+
+  <!-- अगर कोई order नहीं है -->
+  <div *ngIf="orders.length === 0" class="alert alert-info text-center">
+    No orders found!
+  </div>
+
+  <!-- Orders Table -->
+  <table *ngIf="orders.length > 0"
+    class="table table-bordered table-striped shadow-sm">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Customer Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th>Total Amount</th> <!-- ✅ Added -->
+        <th>Payment ID</th> <!-- ✅ Added -->
+        <th>Image</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ order.customerName }}</td>
+        <td>{{ order.email }}</td>
+        <td>{{ order.mobile }}</td>
+        <td>{{ order.address }}</td>
+        <td>{{ order.productName }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>₹ {{ order.price }}</td>
+        <td>₹ {{ order.totalAmount }}</td> <!-- ✅ Show total -->
+        <td>{{ order.paymentId }}</td> <!-- ✅ Show Payment ID -->
+        <td>
+          <a [href]="order.imageUrl" target="_blank">
+            <img *ngIf="order.imageUrl" [src]="order.imageUrl" alt="Product"
+              width="60" height="60" class="rounded shadow-sm">
+          </a>
+        </td>
+        <td>{{ order.createdAt?.toDate ? (order.createdAt.toDate() |
+          date:'short') : (order.createdAt | date:'short') }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

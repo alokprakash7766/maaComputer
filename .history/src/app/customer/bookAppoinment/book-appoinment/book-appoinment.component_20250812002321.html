@@ -1,0 +1,113 @@
+
+  <div class="card overflow-hidden">
+    <div class="row g-0">
+      <!-- Left image/info -->
+      <div class="col-lg-5 d-none d-lg-block bg-primary text-white p-4">
+        <div class="h-100 d-flex flex-column justify-content-center">
+          <h2 class="fw-bold">Book Appointment</h2>
+          <p class="mb-4">Fast & easy booking. Choose date, time and fill your details. We'll confirm by email.</p>
+          <ul class="list-unstyled small">
+            <li>• Free cancellation 24 hours before</li>
+            <li>• In-person or online options</li>
+            <li>• Professional staff</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="col-lg-7 p-4 p-lg-5">
+        <h3 class="mb-3">Appointment Details</h3>
+
+        <form id="appointmentForm" class="needs-validation" novalidate>
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="firstName" class="form-label">First name <span class="required">*</span></label>
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="John" required>
+              <div class="invalid-feedback">Please enter your first name.</div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="lastName" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Doe">
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="email" class="form-label">Email <span class="required">*</span></label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+              <div class="invalid-feedback">Please provide a valid email.</div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="phone" class="form-label">Phone <span class="required">*</span></label>
+              <input type="tel" pattern="[0-9]{10,15}" class="form-control" id="phone" name="phone" placeholder="9876543210" required>
+              <div class="invalid-feedback">Enter phone (10-15 digits).</div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="date" class="form-label">Preferred date <span class="required">*</span></label>
+              <input type="date" class="form-control" id="date" name="date" required>
+              <div class="invalid-feedback">Please choose a date.</div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="time" class="form-label">Preferred time <span class="required">*</span></label>
+              <input type="time" class="form-control" id="time" name="time" required>
+              <div class="invalid-feedback">Please choose a time.</div>
+            </div>
+
+            <div class="col-12">
+              <label for="service" class="form-label">Service type <span class="required">*</span></label>
+              <select id="service" name="service" class="form-select" required>
+                <option value="" selected disabled>Choose...</option>
+                <option>Consultation (30 min)</option>
+                <option>In-depth Meeting (60 min)</option>
+                <option>Technical Support (45 min)</option>
+                <option>Other</option>
+              </select>
+              <div class="invalid-feedback">Please choose a service.</div>
+            </div>
+
+            <div class="col-12">
+              <label for="notes" class="form-label">Notes / Message</label>
+              <textarea id="notes" name="notes" class="form-control" rows="3" placeholder="Anything we should know?"></textarea>
+            </div>
+
+            <div class="col-12 d-flex justify-content-between align-items-center">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="reminder" checked>
+                <label class="form-check-label" for="reminder">Send reminder email</label>
+              </div>
+
+              <div>
+                <button type="button" class="btn btn-outline-secondary me-2" id="resetBtn">Reset</button>
+                <button type="submit" class="btn btn-primary" id="submitBtn">Book Appointment</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Confirmation Modal -->
+        <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Confirm Appointment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p id="summaryText" class="mb-0"></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
+                <button type="button" id="confirmBtn" class="btn btn-primary">Confirm & Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success alert placeholder -->
+        <div id="resultAlert" class="mt-3" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+  

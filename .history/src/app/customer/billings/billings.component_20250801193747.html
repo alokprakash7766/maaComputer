@@ -1,0 +1,39 @@
+<div class="container py-5">
+  <h2 class="mb-3">Billing Form</h2>
+
+  <div class="row">
+  <div class="col-md-6">
+  
+  </div>
+  <div class="col-md-6"></div>
+  </div>
+
+  
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Location</th>
+        <th>Pincode</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (bill of billings; track bill.id) {
+        <tr>
+          <td>{{ bill.name }}</td>
+          <td>{{ bill.mobile }}</td>
+          <td>{{ bill.address }}</td>
+          <td>{{ bill.location }}</td>
+          <td>{{ bill.pincode }}</td>
+          <td>
+            <button (click)="deleteBilling(bill.id)" class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

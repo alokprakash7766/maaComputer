@@ -1,0 +1,16 @@
+<h2 class="text-center">🛒 Your Cart</h2>
+
+<div *ngIf="cartItems.length === 0" class="text-center text-muted">
+  Cart is empty
+</div>
+
+<div *ngFor="let item of cartItems" class="card m-2 p-3 shadow-sm">
+  <h5>{{ item.name }}</h5>
+  <p>Price: ₹{{ item.price }}</p>
+  <div class="d-flex align-items-center">
+    <button class="btn btn-sm btn-outline-secondary me-2" (click)="decreaseQty(item)">-</button>
+    <span>{{ item.quantity }}</span>
+    <button class="btn btn-sm btn-outline-secondary ms-2" (click)="increaseQty(item)">+</button>
+  </div>
+  <button class="btn btn-danger mt-2" (click)="deleteItem(item.id!)">Remove</button>
+</div>

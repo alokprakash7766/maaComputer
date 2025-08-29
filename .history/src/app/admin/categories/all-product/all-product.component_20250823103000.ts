@@ -1,0 +1,38 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-all-product',
+  imports: [],
+  templateUrl: './all-product.component.html',
+  styleUrl: './all-product.component.css'
+})
+export class AllProductComponent {
+      OnInit: void:
+
+      // ------------------ Products ------------------
+        getProductsByCategory(categoryId: string): Product[] {
+          return this.products.filter((p: Product) => p.categoryId === categoryId);
+        }
+      
+        deleteProduct(id?: string) {
+          if (!id) return;
+          Swal.fire({
+            title: 'Are you sure?',
+            text: 'This product will be permanently deleted!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.productService.deleteProduct(id).then(() => {
+                Swal.fire('Deleted!', 'Product has been deleted.', 'success');
+              }).catch((err) => {
+                console.error(err);
+                Swal.fire('Error!', 'Failed to delete product.', 'error');
+              });
+            }
+          });
+        }
+}

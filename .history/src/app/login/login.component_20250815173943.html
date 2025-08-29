@@ -1,0 +1,57 @@
+<ngx-spinner size="medium" color="#00E5FF" type="ball-fussion" [fullScreen]="true"></ngx-spinner>
+
+<div class="container py-5 loginLogin bg-light">
+  <div class="row justify-content-center">
+    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 col-12">
+
+      <!-- ✅ LOGIN FORM -->
+      <form *ngIf="step === 'login'" #loginForm="ngForm" (ngSubmit)="submit()" class="p-4 rounded bg-white shadow-lg border-top border-4 border-primary">
+        <h3 class="text-center text-primary fw-light mb-3">Login Form</h3>
+
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="Email" name="email" [(ngModel)]="login.email" required />
+        </div>
+
+        <div class="mb-3">
+          <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="login.password" required />
+        </div>
+
+        <a (click)="step = 'verifyEmailPhone'" style="cursor:pointer;" class="text-end d-block mb-3">Forget Password?</a>
+
+        <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid">Sign In</button>
+      </form>
+
+      <!-- ✅ STEP 1: VERIFY EMAIL & MOBILE -->
+      <form *ngIf="step === 'verifyEmailPhone'" #verifyForm="ngForm" (ngSubmit)="verifyUser()" class="p-4 rounded bg-white shadow-lg border-top border-4 border-primary">
+        <h3 class="text-center text-primary fw-light mb-3">Verify Account</h3>
+
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="Registered Email" name="verifyEmail" [(ngModel)]="verify.email" required />
+        </div>
+
+        <div class="mb-3">
+          <input type="text" class="form-control" placeholder="Registered Mobile" name="verifyMobile" [(ngModel)]="verify.mobile" required />
+        </div>
+
+        <button class="btn btn-primary w-100" type="submit" [disabled]="verifyForm.invalid">Verify</button>
+        <a (click)="step = 'login'" class="d-block mt-2" style="cursor:pointer;">Back to Login</a>
+      </form>
+
+      <!-- ✅ STEP 2: RESET PASSWORD -->
+      <form *ngIf="step === 'resetPassword'" #resetForm="ngForm" (ngSubmit)="resetPassword()" class="p-4 rounded bg-white shadow-lg border-top border-4 border-primary">
+        <h3 class="text-center text-primary fw-light mb-3">Set New Password</h3>
+
+        <div class="mb-3">
+          <input type="password" class="form-control" placeholder="New Password" name="newPassword" [(ngModel)]="reset.newPassword" required minlength="6" />
+        </div>
+
+        <div class="mb-3">
+          <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" [(ngModel)]="reset.confirmPassword" required minlength="6" />
+        </div>
+
+        <button class="btn btn-success w-100" type="submit" [disabled]="resetForm.invalid">Update Password</button>
+      </form>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+/* Night sky background with stars */
+body,
+.loginLogin {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: url("https://media.istockphoto.com/id/485289973/photo/romantic-sky-night-for-valentine-background.jpg?s=612x612&w=0&k=20&c=MinA4-YXUdMv8PilucPaw84e3jdc-3jCMeTynTRtzZo=");
+  position: relative;
+}
+
+/* Stars layer */
+.loginLogin::before {
+  content: "";
+  position: absolute;
+  width: 3000px;
+  height: 3000px;
+  background: transparent url("https://media.istockphoto.com/id/485289973/photo/romantic-sky-night-for-valentine-background.jpg?s=612x612&w=0&k=20&c=MinA4-YXUdMv8PilucPaw84e3jdc-3jCMeTynTRtzZo=") repeat top
+    center;
+  animation: moveStars 200s linear infinite;
+  z-index: 0;
+  top: -1000px;
+  left: -1000px;
+  opacity: 0.4;
+}
+
+@keyframes moveStars {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-1000px);
+  }
+}

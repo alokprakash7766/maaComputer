@@ -1,0 +1,86 @@
+/* Night sky background with stars */
+body, .loginLogin {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: url("img/image/night.jpeg");
+  position: relative;
+  color: #ffffff;
+}
+
+.loginLogin::before {
+  content: '';
+  position: absolute;
+  width: 2000px;
+  height: 2000px;
+  background: transparent url('https://i.ibb.co/h7T1N1S/stars.png') repeat top center;
+  animation: moveStars 200s linear infinite;
+  z-index: 0;
+  top: -500px;
+  left: -500px;
+  opacity: 0.6;
+}
+
+@keyframes moveStars {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-1000px);
+  }
+}
+
+/* Glassmorphic login box */
+.animated-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* Labels and input styles */
+.form-floating label {
+  color: #ddd;
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+}
+
+.form-control::placeholder {
+  color: #ccc;
+}
+
+/* Login heading */
+.login-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #00E5FF;
+  text-shadow: 1px 1px 10px #00E5FF;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #00E5FF;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #00bcd4;
+}
+
+/* Register link styling */
+.text-primary {
+  color: #00E5FF !important;
+}
+
+.text-primary:hover {
+  color: #00bcd4 !important;
+}

@@ -1,0 +1,137 @@
+<div class="container py-5">
+  <h2 class="text-center mb-5 text-primary fw-bold">📦 Place Your Order</h2>
+
+  <div class="row g-4">
+    <!-- Left Side : Form -->
+    <div class="col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4 p-4 h-100">
+        <h4 class="mb-4 text-success fw-bold">Fill Order Details</h4>
+
+        <form (ngSubmit)="submitOrder(orderForm)" #orderForm="ngForm" novalidate>
+
+          <!-- Customer Name -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Customer Name</label>
+            <input type="text" class="form-control" 
+                   [(ngModel)]="orderData.customerName" 
+                   name="customerName" 
+                   #customerName="ngModel" 
+                   required minlength="3">
+            <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)" class="text-danger small">
+              <span *ngIf="customerName.errors?.['required']">Name is required</span>
+              <span *ngIf="customerName.errors?.['minlength']">Minimum 3 characters required</span>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Email</label>
+            <input type="email" class="form-control"
+                   [(ngModel)]="orderData.email" 
+                   name="email" 
+                   #email="ngModel" 
+                   required email>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger small">
+              <span *ngIf="email.errors?.['required']">Email is required</span>
+              <span *ngIf="email.errors?.['email']">Enter a valid email</span>
+            </div>
+          </div>
+
+          <!-- Mobile -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Mobile</label>
+            <input type="text" class="form-control"
+                   [(ngModel)]="orderData.mobile" 
+                   name="mobile" 
+                   #mobile="ngModel" 
+                   required pattern="^[0-9]{10}$">
+            <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)" class="text-danger small">
+              <span *ngIf="mobile.errors?.['required']">Mobile number is required</span>
+              <span *ngIf="mobile.errors?.['pattern']">Enter a valid 10-digit mobile number</span>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Address</label>
+            <textarea class="form-control"
+                      [(ngModel)]="orderData.address" 
+                      name="address" 
+                      #address="ngModel"
+                      rows="2" 
+                      required></textarea>
+            <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-danger small">
+              <span *ngIf="address.errors?.['required']">Address is required</span>
+            </div>
+          </div>
+
+          <!-- Product, Qty, Price -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Product Name</label>
+              <input type="text" class="form-control"
+                     [(ngModel)]="orderData.productName" 
+                     name="productName" 
+                     #productName="ngModel" 
+                     required>
+              <div *ngIf="productName.invalid && (productName.dirty || productName.touched)" class="text-danger small">
+                <span *ngIf="productName.errors?.['required']">Product name is required</span>
+              </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label fw-semibold">Qty</label>
+              <input type="number" class="form-control"
+                     [(ngModel)]="orderData.quantity" 
+                     name="quantity" 
+                     #quantity="ngModel" 
+                     required min="1">
+              <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="text-danger small">
+                <span *ngIf="quantity.errors?.['required']">Quantity is required</span>
+                <span *ngIf="quantity.errors?.['min']">Minimum 1 required</span>
+              </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label fw-semibold">Price</label>
+              <input type="number" class="form-control"
+                     [(ngModel)]="orderData.price" 
+                     name="price" 
+                     #price="ngModel" 
+                     required min="1">
+              <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-danger small">
+                <span *ngIf="price.errors?.['required']">Price is required</span>
+                <span *ngIf="price.errors?.['min']">Minimum price should be 1</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button class="btn btn-primary w-100 mt-3" [disabled]="orderForm.invalid">Place Order</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Side : Orders List -->
+    <div class="col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4 p-4 h-100">
+        <h4 class="mb-4 text-danger fw-bold text-center">All Orders</h4>
+
+        <div *ngIf="orders.length === 0" class="text-center text-muted">
+          <p>No Orders Yet 🚫</p>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let order of orders" 
+              class="list-group-item d-flex justify-content-between align-items-center order-item">
+            <div>
+              <strong>{{ order.customerName }}</strong> <br>
+              <small class="text-muted">{{ order.productName }} (x{{order.quantity}})</small>
+            </div>
+            <button class="btn btn-sm btn-outline-danger px-3" (click)="removeOrder(order.id!)">❌</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

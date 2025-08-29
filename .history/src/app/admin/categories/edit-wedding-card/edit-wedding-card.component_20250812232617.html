@@ -1,0 +1,85 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4 fw-bold text-primary">✏ Edit Wedding Card</h2>
+
+  <form [formGroup]="cardForm" (ngSubmit)="updateCard()" class="mx-auto" style="max-width: 700px;">
+    <div class="row g-4 mb-3">
+      <div class="col-md-6">
+        <label for="name" class="form-label fw-semibold">Card Name <span class="text-danger">*</span></label>
+        <input
+          id="name"
+          formControlName="name"
+          class="form-control form-control-lg shadow-sm"
+          placeholder="Enter card name"
+          required
+          [ngClass]="{'is-invalid': cardForm.get('name')?.invalid && cardForm.get('name')?.touched}"
+        />
+        <div class="invalid-feedback">
+          Card Name is required.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="price" class="form-label fw-semibold">Price <span class="text-danger">*</span></label>
+        <input
+          id="price"
+          type="number"
+          formControlName="price"
+          class="form-control form-control-lg shadow-sm"
+          placeholder="Enter price"
+          required
+          min="0"
+          [ngClass]="{'is-invalid': cardForm.get('price')?.invalid && cardForm.get('price')?.touched}"
+        />
+        <div class="invalid-feedback">
+          Price must be zero or more.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="description" class="form-label fw-semibold">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control shadow-sm"
+        rows="4"
+        placeholder="Write a brief description (optional)"
+      ></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label for="image" class="form-label fw-semibold">Upload Image</label>
+      <input
+        id="image"
+        type="file"
+        class="form-control"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+      />
+    </div>
+
+    <div *ngIf="(selectedFile || oldImageUrl)" class="mb-4 text-center">
+      <p class="fw-semibold mb-2">Image Preview:</p>
+      <img
+        [src]="
+          selectedFile
+            ? (previewImageUrl || '')
+            : oldImageUrl
+        "
+        alt="Wedding Card Image Preview"
+        class="img-thumbnail shadow-sm"
+        style="max-width: 280px; max-height: 280px; object-fit: contain;"
+      />
+    </div>
+
+    <div class="d-grid">
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg fw-semibold"
+        [disabled]="cardForm.invalid"
+      >
+        Update Card
+      </button>
+    </div>
+  </form>
+</div>

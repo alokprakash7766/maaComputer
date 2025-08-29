@@ -1,0 +1,102 @@
+<div class="container-fluid py-5" *ngIf="userData; else noUser">
+  <div class="row g-0">
+    
+    <!-- Left Side Panel -->
+    <div class="col-md-3 col-lg-2">
+      <div class="list-group shadow-sm h-100 rounded-0">
+        <button class="list-group-item list-group-item-action py-3"
+                [class.active]="activeTab === 'profile'"
+                (click)="activeTab = 'profile'">
+          👤 Profile
+        </button>
+        <button class="list-group-item list-group-item-action py-3"
+                [class.active]="activeTab === 'settings'"
+                (click)="activeTab = 'settings'">
+          ⚙️ Settings
+        </button>
+        <button class="list-group-item list-group-item-action py-3"
+                [class.active]="activeTab === 'orders'"
+                (click)="activeTab = 'orders'">
+          🛒 My Orders
+        </button>
+        <button class="list-group-item list-group-item-action text-danger py-3"
+                (click)="logout()">
+          🚪 Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Side Panel -->
+    <div class="col-md-9 col-lg-10">
+      <div class="card shadow-lg p-4 rounded-0 border-0 h-100">
+        <h3 class="mb-4 text-center border-bottom pb-3">My Account</h3>
+
+        <!-- Profile Tab -->
+        <div *ngIf="activeTab === 'profile'" @slideAnimation>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Name:</strong> {{ userData.name }}</li>
+            <li class="list-group-item"><strong>Email:</strong> {{ userData.email }}</li>
+            <li class="list-group-item"><strong>Phone:</strong> {{ userData.phone }}</li>
+            <li class="list-group-item"><strong>Address:</strong> {{ userData.address }}</li>
+            <li class="list-group-item"><strong>Created At:</strong> {{ userData.createdAt | date:'medium' }}</li>
+            <li class="list-group-item"><strong>User Type:</strong> 
+              {{ userData.userType == '1' ? 'Admin' : 'User' }}
+            </li>
+            <li class="list-group-item"><strong>Status:</strong> {{ userData.isLogged == 'true' ? 'Active' : 'Inactive' }}</li>
+          </ul>
+        </div>
+
+        <!-- Settings Tab -->
+        <div *ngIf="activeTab === 'settings'" @slideAnimation>
+          <h5>⚙️ Account Settings</h5>
+          <p class="text-muted">Here you can add settings form (Change Password, Update Profile, etc.)</p>
+        </div>
+
+        <!-- Orders Tab -->
+        <div *ngIf="activeTab === 'orders'" @slideAnimation>
+          <h5>🛒 My Orders</h5>
+          <p class="text-muted">Order history will be displayed here...</p>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Right Side : Orders List -->
+    <div class="col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4 p-4 h-100">
+        <h4 class="mb-4 text-danger fw-bold text-center">All Orders</h4>
+        <div *ngIf="orders.length === 0" class="text-center text-muted">
+          <p>No Orders Yet</p>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let order of orders" class="list-group-item d-flex justify-content-between align-items-center order-item">
+            <div>
+              <strong>{{ order.customerName }}</strong> <br>
+              <small class="text-muted">{{ order.productName }} (x{{order.quantity}})</small>
+            </div>
+            <button class="btn btn-sm btn-outline-danger px-3" (click)="removeOrder(order.id!)">❌</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- If No User -->
+<ng-template #noUser>
+  <div class="container-fluid py-5">
+    <div class="card shadow-lg p-4 rounded-4 text-center">
+      <h3 class="mb-3">My Account</h3>
+      <p class="text-muted mb-4">You are not logged in.</p>
+      <button class="btn btn-outline-primary w-25" (click)="goToLogin()">
+        🔑 Login to Continue
+      </button>
+      <p class="mt-3">
+        Don't have an account? 
+        <a (click)="goToRegister()" class="text-decoration-none" style="cursor: pointer;">Register here</a>
+      </p>
+    </div>
+  </div>
+</ng-template>

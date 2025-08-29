@@ -1,0 +1,65 @@
+<p>add-category works!</p>
+<!-- <ngx-spinner
+  bdColor="rgba(0, 51, 102, 0.9)"
+  size="medium"
+  color="#00E5FF"
+  type="ball-fussion"
+  [fullScreen]="true">
+</ngx-spinner> -->
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mt-4 mb-5">
+      <h2 class="text-center mb-4">Add Keyboard</h2>
+      <form [formGroup]="keyboardForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Keyboard name">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Brand</label>
+          <input type="text" class="form-control" formControlName="brand" placeholder="e.g., Logitech, Dell">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Type</label>
+          <select class="form-select" formControlName="type">
+            <option value="">Select type</option>
+            <option>Mechanical</option>
+            <option>Membrane</option>
+            <option>Scissor</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Connectivity</label>
+          <select class="form-select" formControlName="connectivity">
+            <option value="">Select connectivity</option>
+            <option>Wired</option>
+            <option>Wireless</option>
+            <option>Bluetooth</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Price (INR)</label>
+          <input type="number" class="form-control" formControlName="price" placeholder="e.g., 1200">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="3" formControlName="description" placeholder="Short description..."></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Image</label>
+          <input type="file" class="form-control" (change)="onFileChange($event)">
+        </div>
+
+        <button type="submit" class="btn btn-success w-100" [disabled]="keyboardForm.invalid">Add Keyboard</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<div class="book mt-5">
+  <div class="card overflow-hidden">
+    <div class="row g-0">
+      
+      <!-- Left Info (visible only on large screens) -->
+      <div class="col-lg-5 d-none d-lg-block bg-primary text-white p-4">
+        <div class="h-100 d-flex flex-column justify-content-center">
+          <h2 class="fw-bold">Book Service Appointment</h2>
+          <p class="mb-4">
+            Fast & easy booking for printer, monitor, and computer servicing.  
+            Choose a date & time, and we’ll confirm by phone or email.
+          </p>
+          <ul class="list-unstyled small">
+            <li>• Free diagnosis for first-time customers</li>
+            <li>• On-site or in-store servicing</li>
+            <li>• Expert technicians</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Form -->
+      <div class="col-lg-7 col-12 p-4">
+        <h3 class="mb-3 text-info">Book Service Appointment</h3>
+
+        <form #appointmentForm="ngForm" (ngSubmit)="openConfirmModal()" novalidate>
+          <div class="row g-3">
+
+            <!-- Name -->
+            <div class="col-md-6">
+              <label class="form-label">Enter name </label>
+              <input type="text" class="form-control" [(ngModel)]="appointment.name" name="name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+              <label class="form-label">Email </label>
+              <input type="email" class="form-control" [(ngModel)]="appointment.email" name="email" required>
+            </div>
+
+            <!-- Phone -->
+            <div class="col-md-6">
+              <label class="form-label">Phone </label>
+              <input type="tel" pattern="[0-9]{10,15}" class="form-control" [(ngModel)]="appointment.phone" name="phone" required>
+            </div>
+
+            <!-- Service Type -->
+            <div class="col-md-6">
+              <label class="form-label">Service type</label>
+              <select class="form-select" [(ngModel)]="appointment.serviceType" name="serviceType" required>
+                <option value disabled selected>Choose...</option>
+                <option>Printer Servicing & Repair</option>
+                <option>Monitor Repair</option>
+                <option>Computer Servicing</option>
+                <option>Software Installation</option>
+                <option>Hardware Upgrade</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <!-- Date -->
+            <div class="col-md-6">
+              <label class="form-label">Preferred date </label>
+              <input type="date" class="form-control" [(ngModel)]="appointment.date" name="date" required>
+            </div>
+
+            <!-- Time -->
+            <div class="col-md-6">
+              <label class="form-label">Preferred time </label>
+              <input type="time" class="form-control" [(ngModel)]="appointment.time" name="time" required>
+            </div>
+
+            <!-- Model -->
+            <div class="col-md-6">
+              <label class="form-label">Model name</label>
+              <input type="text" class="form-control" [(ngModel)]="appointment.modelName" name="modelName">
+            </div>
+
+            <!-- Notes -->
+            <div class="col-12">
+              <label class="form-label">Problem Description</label>
+              <textarea class="form-control" rows="3" [(ngModel)]="appointment.notes" name="notes"></textarea>
+            </div>
+
+            <!-- Reminder + Buttons -->
+            <div class="col-12 d-flex justify-content-between align-items-center">
+              <div>
+                <button type="reset" class="btn btn-outline-secondary me-2">Reset</button>
+                <button type="submit" class="btn btn-warning" [disabled]="!appointmentForm.valid">Book Service</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="confirmModal" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Confirm Service Appointment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <p><b>Name:</b> {{ appointment.name }}</p>
+                <p><b>Email:</b> {{ appointment.email }}</p>
+                <p><b>Phone:</b> {{ appointment.phone }}</p>
+                <p><b>Service:</b> {{ appointment.serviceType }}</p>
+                <p><b>Date:</b> {{ appointment.date }}</p>
+                <p><b>Time:</b> {{ appointment.time }}</p>
+                <p><b>Model:</b> {{ appointment.modelName }}</p>
+                <p><b>Notes:</b> {{ appointment.notes }}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
+                <button type="button" class="btn btn-warning" (click)="confirmBooking()">Confirm & Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

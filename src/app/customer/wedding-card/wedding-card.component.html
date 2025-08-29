@@ -1,0 +1,41 @@
+<div class="container-fluid main">
+  <h2 class="mb-3 text-pink fw-bold border-bottom">Wedding Cards Collection</h2>
+
+  <!-- Loading Spinner -->
+
+  <!-- Wedding Cards List -->
+  <div class="row" *ngIf=" weddingCardsList.length > 0">
+    <div
+      class="wedding-card bg-light text-dark border rounded box-shadow-lg p-2 m-2 col-md-3 cardDiv"
+      *ngFor="let card of weddingCardsList">
+
+      <!-- Card Image -->
+      <a [href]="card.imageUrl" target="_blank">
+        <img
+          [src]="card.imageUrl"
+          alt="{{card.name}}"
+          class="wedding-card-img img-fluid rounded mb-3"
+          style="width:95%; margin-left: 2%; height: 55%;" />
+      </a>
+
+      <!-- Card Info -->
+      <div>
+        <h4 class="text-purple fw-bold">{{ card.name }}</h4>
+        <p class="text-muted">{{ card.description }}</p>
+        <p class="fw-bold text-pink">Price: ₹{{ card.price }}</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mt-1 d-flex justify-content-between">
+        <button class="btn btn-outline-primary me-2"
+          (click)="orderNow(card)">Order Now</button>
+        <button class="btn btn-pink" (click)="addToCart(card)">Add to
+          Cart</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- No Cards -->
+
+</div>

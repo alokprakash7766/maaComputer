@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Place Your Order</h2>
+  <form (ngSubmit)="submitOrder()" #orderForm="ngForm">
+
+    <!-- Customer Name -->
+    <div class="mb-3">
+      <label class="form-label">Your Name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="orderData.customerName" required>
+    </div>
+
+    <!-- Address -->
+    <div class="mb-3">
+      <label class="form-label">Address</label>
+      <textarea class="form-control" name="address" [(ngModel)]="orderData.address" required></textarea>
+    </div>
+
+    <!-- Mobile -->
+    <div class="mb-3">
+      <label class="form-label">Mobile No</label>
+      <input type="text" class="form-control" name="mobileNo" [(ngModel)]="orderData.mobileNo" required>
+    </div>
+
+    <!-- Quantity -->
+    <div class="mb-3">
+      <label class="form-label">Quantity</label>
+      <input type="number" class="form-control" name="quantity" [(ngModel)]="orderData.quantity" required min="1">
+    </div>
+
+    <!-- User Image Upload -->
+    <div class="mb-3">
+      <label class="form-label">Upload Your Image</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)">
+    </div>
+
+    <!-- Card Details Preview -->
+    <div *ngIf="selectedCard" class="border p-3 mb-3 rounded shadow-sm">
+      <h5>{{selectedCard.name}}</h5>
+      <p>{{selectedCard.description}}</p>
+      <p><strong>Price:</strong> ₹{{selectedCard.price}}</p>
+      <img [src]="selectedCard.image" class="img-fluid rounded" width="200">
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-success w-100">Confirm Order</button>
+  </form>
+</div>

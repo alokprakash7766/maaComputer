@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <h2 class="mb-3 text-info">Our Services</h2>
+
+
+
+  <!-- Services List -->
+  <div class="row" *ngIf="!loading && servicesList.length > 0">
+    <div
+      class="service-card bg-dark text-light border rounded ms-3 mb-3 box-shadow"
+      *ngFor="let service of servicesList">
+
+      <!-- Service Image -->
+      <a [href]="service.imageUrl" target="_blank">
+        <img
+          [src]="service.imageUrl"
+          alt="{{service.name}}"
+          class="service-img img-fluid mt-3" />
+      </a>
+
+      <!-- Service Info -->
+      <div class>
+        <h3 class="text-warning">{{ service.name }}</h3>
+        <p class="text-primary">{{ service.description }} </p>
+        <p class="fw-bold text-primary">Service Charge: ₹{{ service.price }}</p>
+        <p class="card-text text-danger">(Parts will be charged separately.)</p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mb-3">
+        <a href="/serviceBook"> <button class="btn btn-outline-success me-5">Select
+            Service</button>
+        </a>
+        <button class="btn btn-outline-info" (click)="addToCart(service)">Add
+          Services</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Services Found -->
+  <div *ngIf="!loading && servicesList.length === 0" class="alert alert-info">
+    No services found.
+  </div>
+</div>
+
+<!-- ooo -->
+<!-- <div class="container mt-4">
+  <h2 class="mb-4">Our Services</h2>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!loading && servicesList.length > 0">
+    <div class="col-md-4 mb-4" *ngFor="let service of servicesList">
+      <div class="card h-100 shadow-sm">
+        <img [src]="service.imageUrl" class="card-img-top"
+          alt="{{service.name}}" height="200" style="object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ service.name }}</h5>
+          <p class="card-text">{{ service.description }}</p>
+          <p class="fw-bold text-primary">₹{{ service.price }}</p>
+          <p class="text-muted small">
+            Added on:
+            {{ service.createdAt | date:'MMMM d, y, h:mm a' }}
+          </p>
+        </div>
+        <div class="mb-3">
+          <a href="/billings" class="me-3"> <button
+              class="btn btn-outline-success me-4">choose
+              Services</button></a>
+
+          <button class="btn btn-outline-success" style="margin-left: 5px;"><a
+              href="/cart">Add to Services</a></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="!loading && servicesList.length === 0" class="alert alert-info">
+    No services found.
+  </div>
+</div> -->

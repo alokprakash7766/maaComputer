@@ -1,0 +1,122 @@
+<div class="container py-5">
+  <h2 class="text-center mb-5 text-primary fw-bold">Place Your Order</h2>
+
+  <div class="row g-4">
+    <!-- Left Side : Form -->
+    <div class="col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4 p-4 h-100">
+        <h4 class="mb-4 text-success fw-bold">Fill Order Details</h4>
+
+        <form (ngSubmit)="submitOrder(orderForm)" #orderForm="ngForm"
+          class="needs-validation" novalidate>
+
+          <!-- Customer Name -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold" for="customerName">Customer
+              Name</label>
+            <input type="text" class="form-control" id="customerName"
+              name="customerName" [(ngModel)]="orderData.customerName"
+              #customerName="ngModel" required>
+            <div
+              *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)"
+              class="text-danger">
+              Customer Name is required.
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold" for="email">Email</label>
+            <input type="email" class="form-control" id="email"
+              name="email" [(ngModel)]="orderData.email"
+              #email="ngModel" required email>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="text-danger">
+              <div *ngIf="email.errors?.['required']">Email is required.</div>
+              <div *ngIf="email.errors?.['email']">Enter a valid email.</div>
+            </div>
+          </div>
+
+          <!-- Mobile -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold" for="mobile">Mobile</label>
+            <input type="text" class="form-control" id="mobile"
+              name="mobile" [(ngModel)]="orderData.mobile"
+              #mobile="ngModel" required pattern="^[0-9]{10}$">
+            <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)"
+              class="text-danger">
+              <div *ngIf="mobile.errors?.['required']">Mobile number is
+                required.</div>
+              <div *ngIf="mobile.errors?.['pattern']">Enter a 10-digit mobile
+                number.</div>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold" for="address">Address</label>
+            <textarea class="form-control" id="address" rows="2"
+              name="address" [(ngModel)]="orderData.address"
+              #address="ngModel" required></textarea>
+            <div *ngIf="address.invalid && (address.dirty || address.touched)"
+              class="text-danger">
+              Address is required.
+            </div>
+          </div>
+
+          <!-- Product, Qty, Price -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Product Name</label>
+              <input type="text" class="form-control" name="productName"
+                [(ngModel)]="orderData.productName" #productName="ngModel"
+                required>
+              <div
+                *ngIf="productName.invalid && (productName.dirty || productName.touched)"
+                class="text-danger">
+                Product Name is required.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="form-label fw-semibold">Qty</label>
+              <input type="number" class="form-control" name="quantity"
+                [(ngModel)]="orderData.quantity" #quantity="ngModel"
+                required min="1">
+              <div
+                *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)"
+                class="text-danger">
+                <div *ngIf="quantity.errors?.['required']">Quantity is
+                  required.</div>
+                <div *ngIf="quantity.errors?.['min']">Quantity must be at least
+                  1.</div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="form-label fw-semibold">Price</label>
+              <input type="number" class="form-control" name="price"
+                [(ngModel)]="orderData.price" #price="ngModel"
+                required min="1">
+              <div *ngIf="price.invalid && (price.dirty || price.touched)"
+                class="text-danger">
+                <div *ngIf="price.errors?.['required']">Price is required.</div>
+                <div *ngIf="price.errors?.['min']">Price must be at least
+                  1.</div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Upload Image</label>
+              <input type="file" class="form-control"
+                (change)="onFileSelected($event)" required>
+            </div>
+
+          </div>
+
+          <!-- Submit Button -->
+          <button class="btn btn-primary w-100 mt-3" type="submit"
+            [disabled]="orderForm.invalid">Place Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

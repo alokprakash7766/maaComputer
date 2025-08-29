@@ -1,0 +1,103 @@
+<div class="container py-5">
+  <h2 class="text-center mb-5 text-primary fw-bold">📦 Place Your Order</h2>
+
+  <div class="row g-4">
+    <!-- Left Side : Form -->
+    <div class="col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4 p-4 h-100">
+        <h4 class="mb-4 text-success fw-bold">Fill Order Details</h4>
+
+        <form (ngSubmit)="submitOrder(orderForm)" #orderForm="ngForm" class="needs-validation" [ngClass]="{'was-validated': orderForm.submitted}" novalidate>
+
+          <!-- Customer Name -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Customer Name</label>
+            <input type="text" class="form-control" [(ngModel)]="orderData.customerName" name="customerName" required minlength="3">
+            <div class="invalid-feedback">
+              Name is required (min 3 characters)
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="orderData.email" name="email" required email>
+            <div class="invalid-feedback">
+              Enter a valid email
+            </div>
+          </div>
+
+          <!-- Mobile -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Mobile</label>
+            <input type="text" class="form-control" [(ngModel)]="orderData.mobile" name="mobile" required pattern="^[0-9]{10}$">
+            <div class="invalid-feedback">
+              Enter a valid 10-digit mobile number
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Address</label>
+            <textarea class="form-control" [(ngModel)]="orderData.address" name="address" rows="2" required></textarea>
+            <div class="invalid-feedback">
+              Address is required
+            </div>
+          </div>
+
+          <!-- Product, Qty, Price -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Product Name</label>
+              <input type="text" class="form-control" [(ngModel)]="orderData.productName" name="productName" required>
+              <div class="invalid-feedback">
+                Product name is required
+              </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label fw-semibold">Qty</label>
+              <input type="number" class="form-control" [(ngModel)]="orderData.quantity" name="quantity" required min="1">
+              <div class="invalid-feedback">
+                Minimum 1 required
+              </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <label class="form-label fw-semibold">Price</label>
+              <input type="number" class="form-control" [(ngModel)]="orderData.price" name="price" required min="1">
+              <div class="invalid-feedback">
+                Minimum price should be 1
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button class="btn btn-primary w-100 mt-3" type="submit">Place Order</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Side : Orders List -->
+    <div class="col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4 p-4 h-100">
+        <h4 class="mb-4 text-danger fw-bold text-center">All Orders</h4>
+
+        <div *ngIf="orders.length === 0" class="text-center text-muted">
+          <p>No Orders Yet 🚫</p>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let order of orders" 
+              class="list-group-item d-flex justify-content-between align-items-center order-item">
+            <div>
+              <strong>{{ order.customerName }}</strong> <br>
+              <small class="text-muted">{{ order.productName }} (x{{order.quantity}})</small>
+            </div>
+            <button class="btn btn-sm btn-outline-danger px-3" (click)="removeOrder(order.id!)">❌</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

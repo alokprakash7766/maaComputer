@@ -1,0 +1,126 @@
+<!-- Spinner -->
+<ngx-spinner
+  size="medium"
+  color="#864fdd"
+  type="ball-fussion"
+  [fullScreen]="true">
+</ngx-spinner>
+
+<!-- Register Form Start -->
+<div class="container-fluid register responsive-form-container bg-light">
+  <div class="row w-100 justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card shadow-lg border-0 rounded-4 animate-register">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="text-center mb-4 text-primary">User Registration</h2>
+
+          <form #registerForm="ngForm" (ngSubmit)="submit()" novalidate>
+
+            <div class="row">
+              <!-- Full Name -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control"
+                  [(ngModel)]="user.name" name="name"
+                  required placeholder="Enter full name">
+                <small class="text-danger validation-message">
+                  Full Name is required
+                </small>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control"
+                  [(ngModel)]="user.email" name="email"
+                  required email placeholder="Enter email">
+                <small class="text-danger validation-message">
+                  Enter a valid Email
+                </small>
+              </div>
+
+              <!-- Phone -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Phone Number</label>
+                <input type="text" class="form-control"
+                  [(ngModel)]="user.phone" name="phone"
+                  required pattern="^[0-9]{10}$"
+                  placeholder="Enter 10-digit phone number">
+                <small class="text-danger validation-message">
+                  Phone number must be 10 digits
+                </small>
+              </div>
+
+              <!-- Address -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Address</label>
+                <textarea class="form-control" rows="3"
+                  [(ngModel)]="user.address" name="address"
+                  required placeholder="Enter address"></textarea>
+                <small class="text-danger validation-message">
+                  Address is required
+                </small>
+              </div>
+
+           
+              <div class="col-md-6 mb-3 position-relative">
+                <label class="form-label">Password</label>
+                <div class="input-group">
+                  <input [type]="showPassword ? 'text' : 'password'"
+                    class="form-control"
+                    [(ngModel)]="user.password" name="password"
+                    required minlength="6"
+                    placeholder="Enter password">
+                  <button type="button" class="btn btn-outline-secondary"
+                    (click)="togglePassword('main')">
+                    {{ showPassword ? 'Hide' : 'Show' }}
+                  </button>
+                </div>
+                <small class="text-danger validation-message">
+                  Password must be at least 6 characters
+                </small>
+              </div>
+
+              <div class="col-md-6 mb-3 position-relative">
+                <label class="form-label">Confirm Password</label>
+                <div class="input-group">
+                  <input [type]="showConfirmPassword ? 'text' : 'password'"
+                    class="form-control"
+                    [(ngModel)]="confirmPassword" name="confirmPassword"
+                    required placeholder="Confirm password">
+                  <button type="button" class="btn btn-outline-secondary"
+                    (click)="togglePassword('confirm')">
+                    {{ showConfirmPassword ? 'Hide' : 'Show' }}
+                  </button>
+                </div>
+              
+                <small
+                  *ngIf="confirmPassword && confirmPassword !== user.password"
+                  class="text-danger">
+                  Passwords do not match
+                </small>
+                <small
+                  *ngIf="confirmPassword && confirmPassword === user.password"
+                  class="text-success">
+                  Passwords match ✓
+                </small>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3"
+              [disabled]="!registerForm.valid || user.password !== confirmPassword">
+              Register
+            </button>
+
+            <p class="mt-3 text-center text-secondary">
+              Already have an account?
+              <a routerLink="/login" class="text-decoration-none">Login</a>
+            </p>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Register Form End -->

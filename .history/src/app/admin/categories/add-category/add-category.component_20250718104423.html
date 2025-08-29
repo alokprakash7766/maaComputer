@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Add Category Item</h2>
+
+  <form>
+    <!-- Category Dropdown -->
+    <div class="mb-3">
+      <label for="category" class="form-label">Select Category</label>
+      <select id="category" class="form-select">
+        <option value="">-- Select Category --</option>
+        <option>Keyboard</option>
+        <option>Mouse</option>
+        <option>Printer</option>
+        <option>Paper Goods</option>
+        <option>Wedding Card</option>
+        <option>Lamination Machine</option>
+      </select>
+    </div>
+
+    <!-- Sample Input Fields (you can add more as per category) -->
+    <div class="mb-3">
+      <label for="model" class="form-label">Model Name</label>
+      <input type="text" class="form-control" id="model" placeholder="Enter Model Name" />
+    </div>
+
+    <div class="mb-3">
+      <label for="brand" class="form-label">Brand</label>
+      <input type="text" class="form-control" id="brand" placeholder="Enter Brand" />
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" class="form-control" id="price" placeholder="Enter Price" />
+    </div>
+
+    <!-- Image Upload -->
+    <div class="mb-3">
+      <label for="image" class="form-label">Upload Product Image</label>
+      <input type="file" class="form-control" id="image" />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-success w-100">
+      Add Item
+    </button>
+  </form>
+</div>

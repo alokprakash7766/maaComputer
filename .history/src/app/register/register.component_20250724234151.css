@@ -1,0 +1,28 @@
+/* Full height container with scroll support */
+.responsive-form-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+.register{
+  margin-top: 7%;
+}
+
+/* Slide + Fade animation */
+@keyframes slideFadeIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-register {
+  animation: slideFadeIn 0.8s ease-out;
+}

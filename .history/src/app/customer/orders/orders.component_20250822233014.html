@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Place Your Order</h2>
+  <form (ngSubmit)="submitOrder()" #orderForm="ngForm">
+
+    <!-- Name -->
+    <div class="mb-3">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="orderData.name" required>
+    </div>
+
+    <!-- Address -->
+    <div class="mb-3">
+      <label class="form-label">Address</label>
+      <textarea class="form-control" name="address" [(ngModel)]="orderData.address" required></textarea>
+    </div>
+
+    <!-- Mobile -->
+    <div class="mb-3">
+      <label class="form-label">Mobile No</label>
+      <input type="text" class="form-control" name="mobileNo" [(ngModel)]="orderData.mobileNo" required>
+    </div>
+
+    <!-- Image Upload -->
+    <div class="mb-3">
+      <label class="form-label">Upload Image</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)">
+    </div>
+
+    <!-- Show selected card -->
+    <div *ngIf="selectedCard" class="border p-2 mb-3">
+      <h5>Selected Card: {{selectedCard.title}}</h5>
+      <img [src]="selectedCard.image" class="img-fluid" width="200">
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn btn-success">Confirm Order</button>
+  </form>
+</div>

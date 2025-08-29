@@ -1,0 +1,89 @@
+<div class="container mt-5">
+
+  <!-- SERVICE EDIT FORM -->
+  <div *ngIf="type === 'service'" class="card shadow w-50 mx-auto">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Edit Service</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="serviceForm" (ngSubmit)="updateService()">
+
+        <!-- Service Name -->
+        <div class="mb-3">
+          <label class="form-label">Service Name</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Enter service name">
+        </div>
+
+        <!-- Price -->
+        <div class="mb-3">
+          <label class="form-label">Price (₹)</label>
+          <input type="number" class="form-control" formControlName="price" placeholder="Enter service price">
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="3" formControlName="description" placeholder="Enter service description"></textarea>
+        </div>
+
+        <!-- Image -->
+        <div class="mb-3">
+          <label class="form-label">Service Image</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Update Service</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- PRODUCT EDIT FORM -->
+  <div *ngIf="type === 'product'" class="card shadow-lg p-4 col-md-10 mx-auto mt-4">
+    <h4 class="text-center text-primary fw-bold mb-4">Edit Product</h4>
+    <form [formGroup]="productForm" (ngSubmit)="updateProduct()">
+      <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Product Name</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter product name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Brand</label>
+            <input type="text" class="form-control" formControlName="brand" placeholder="Enter brand">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Price (₹)</label>
+            <input type="number" class="form-control" formControlName="price" placeholder="Enter price">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Stock</label>
+            <input type="number" class="form-control" formControlName="stock" placeholder="Enter stock quantity">
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label">Category ID</label>
+            <input type="text" class="form-control" formControlName="categoryId" placeholder="Enter category ID">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Category Name</label>
+            <input type="text" class="form-control" formControlName="categoryName" placeholder="Enter category name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" rows="3" formControlName="description" placeholder="Enter description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Product Image</label>
+            <input type="file" class="form-control" (change)="uploadFile($event)">
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 fw-semibold">Update Product</button>
+    </form>
+  </div>
+
+</div>

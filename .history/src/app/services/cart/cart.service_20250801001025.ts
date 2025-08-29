@@ -1,0 +1,34 @@
+import { CartService } from './../../../../.history/src/app/services/cart/cart.service_20250725213339';
+// cart.component.ts
+import { Component, OnInit } from '@angular/core';
+import { CartModel } from '../../shared/models/cart/cart.model';
+import { dataConnectInstance$ } from '@angular/fire/data-connect';
+
+@Component({
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.css']
+})
+export class CartComponent implements OnInit {
+  cartItems: (CartModel & { id?: string })[] = [];
+
+  constructor(private cartService: CartService) {}
+
+  ngOnInit(): void {
+    this.cartService.getCartItems().subscribe(dataConnectInstance$ => {
+      this.cartItems = data;
+    });
+  }
+
+  getTotal(item: CartModel): number {
+    return item.price * item.quantity;
+  }
+
+  getSubtotal(): number {
+    return this.cartItems.reduce((acc, item) => acc + this.getTotal(item), 0);
+  }
+
+  removeItem(id: string) {
+    this.cartService.removeCartItem(id);
+  }
+}
